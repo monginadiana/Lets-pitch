@@ -19,7 +19,7 @@ def register():
         mail_message("Welcome to Pitch Deck","email/welcome_user",user.email,user=user)
         return redirect(url_for('auth.login'))
 
-    title = "SignUp | PitchDeck"
+    title = "SignUp | LetsPitch"
     return render_template('auth/register.html',registration_form = form,title = title)
 
 @auth.route('/login',methods=['GET','POST'])
@@ -33,5 +33,5 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "SignIn | PitchDeck"
+    title = "SignIn | LetsPitch"
     return render_template('auth/login.html',login_form = login_form,title=title)
