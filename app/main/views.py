@@ -4,7 +4,7 @@ from flask_login import login_required,current_user
 from ..models import User,Pitch,Comment,Upvote,Downvote
 from .forms import UpdateProfile,AddPitch,CommentForm,Downvote,Upvote
 from .. import db,photos
-from flask.views import View,MethodView
+from flask.views import View
 
 
 @main.route('/')
@@ -52,24 +52,7 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-# @main.route('/categories')
-# def categories():
-
-
-#     title = 'Pitches | Categories'
-#     pitch = Pitch.query.filter_by().first()
-#     twitter = Pitch.query.filter_by(category="twitter")
-#     elevator = Pitch.query.filter_by(category = "elevator")
-#     competition = Pitch.query.filter_by(category = "competition")
-#     investor = Pitch.query.filter_by(category = "investor")
-#     upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
-#     # downvotes = Downvote.get_all_downvotes(pitch_id=Pitch.id)
-    
-
-#     return render_template('categories.html',title =title, pitch = pitch, twitter=twitter, elevator= elevator, competition = competition, investor = investor, upvotes=upvotes )
-
-
-@main.route('/pitches/new/', methods = ['GET','POST'])
+@main.route('/pitches', methods = ['GET','POST'])
 @login_required
 def new_pitch():
     form = AddPitch()
@@ -107,34 +90,3 @@ def new_comment(pitch_id):
     all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
     return render_template('add_comment.html', form = form, comment = all_comments, pitch = pitch )
 
-
-# @main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
-
-# def upvote(pitch_id):
-#     pitch = Pitch.query.get(pitch_id)
-#     user = current_user
-#     pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
-    
-#     if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
-#         return  redirect(url_for('main.categories'))
-
-
-#     new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
-#     new_upvote.save_upvotes()
-#     return redirect(url_for('main.categories'))
-
-
-
-# @main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
-# def downvote(pitch_id):
-#     pitch = Pitch.query.get(pitch_id)
-#     user = current_user
-#     pitch_downvotes = Downvote.query.filter_by(pitch_id = pitch_id)
-    
-#     if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
-#         return  redirect(url_for('main.categories'))
-
-
-#     new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
-#     new_downvote.save_downvotes()
-#     return redirect(url_for('main.categories'))
