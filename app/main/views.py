@@ -52,43 +52,42 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/categories')
-def categories():
+# @main.route('/categories')
+# def categories():
 
 
-    title = 'Pitches | Categories'
-    pitch = Pitch.query.filter_by().first()
-    twitter = Pitch.query.filter_by(category="twitter")
-    elevator = Pitch.query.filter_by(category = "elevator")
-    competition = Pitch.query.filter_by(category = "competition")
-    investor = Pitch.query.filter_by(category = "investor")
-    upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
-    # downvotes = Downvote.get_all_downvotes(pitch_id=Pitch.id)
+#     title = 'Pitches | Categories'
+#     pitch = Pitch.query.filter_by().first()
+#     twitter = Pitch.query.filter_by(category="twitter")
+#     elevator = Pitch.query.filter_by(category = "elevator")
+#     competition = Pitch.query.filter_by(category = "competition")
+#     investor = Pitch.query.filter_by(category = "investor")
+#     upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
+#     # downvotes = Downvote.get_all_downvotes(pitch_id=Pitch.id)
     
 
-    return render_template('categories.html',title =title, pitch = pitch, twitter=twitter, elevator= elevator, competition = competition, investor = investor, upvotes=upvotes )
+#     return render_template('categories.html',title =title, pitch = pitch, twitter=twitter, elevator= elevator, competition = competition, investor = investor, upvotes=upvotes )
 
 
 @main.route('/pitches/new/', methods = ['GET','POST'])
 @login_required
 def new_pitch():
     form = AddPitch()
-    my_upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
     if form.validate_on_submit():
-        pitcher = form.pitcher.data
-        description = form.description.data
-        title = form.title.data
-        owner_id = current_user
-        category = form.category.data
         
-        new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category, pitcher = pitcher)
+        title = form.title.data
+        category = form.category.data
+        description = form.description.data
+        
+        new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_pitch)
         db.session.commit()
-        
-        
-        return redirect(url_for('main.categories'))
-    return render_template('add_pitch.html',form=form)
+        return redirect(url_for('main.index'))
 
+    else:
+        all_pitches = Pitch.query.order_by(Pitch.date_posted).all()
+
+    return render_template('Pitch.html', new_pitch=all_pitches,pitch_form = form)
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
 
@@ -109,33 +108,33 @@ def new_comment(pitch_id):
     return render_template('add_comment.html', form = form, comment = all_comments, pitch = pitch )
 
 
-@main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+# @main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
 
-def upvote(pitch_id):
-    pitch = Pitch.query.get(pitch_id)
-    user = current_user
-    pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
+# def upvote(pitch_id):
+#     pitch = Pitch.query.get(pitch_id)
+#     user = current_user
+#     pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
     
-    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
-        return  redirect(url_for('main.categories'))
+#     if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
+#         return  redirect(url_for('main.categories'))
 
 
-    new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
-    new_upvote.save_upvotes()
-    return redirect(url_for('main.categories'))
+#     new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
+#     new_upvote.save_upvotes()
+#     return redirect(url_for('main.categories'))
 
 
 
-@main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
-def downvote(pitch_id):
-    pitch = Pitch.query.get(pitch_id)
-    user = current_user
-    pitch_downvotes = Downvote.query.filter_by(pitch_id = pitch_id)
+# @main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
+# def downvote(pitch_id):
+#     pitch = Pitch.query.get(pitch_id)
+#     user = current_user
+#     pitch_downvotes = Downvote.query.filter_by(pitch_id = pitch_id)
     
-    if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
-        return  redirect(url_for('main.categories'))
+#     if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
+#         return  redirect(url_for('main.categories'))
 
 
-    new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
-    new_downvote.save_downvotes()
-    return redirect(url_for('main.categories'))
+#     new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
+#     new_downvote.save_downvotes()
+#     return redirect(url_for('main.categories'))
