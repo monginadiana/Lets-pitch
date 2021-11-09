@@ -1,15 +1,20 @@
+
+
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+
 {% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css">
-{% endblock styles%}
-<!-- Content block -->
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
 {% block content %}
+
 <div class="container text-center">
     <img src="{{url_for('static', filename='images/white.jpg')}}" />
-    <div class="text-content">
+   <div class="text-content"> 
         <h1>My pitching philosophy is simple - keep the ball way from the bat. <br> - pitching.</h1>
         <h5>Satchel Paige</h5>
-    </div>
+    </div> 
 </div>
-{% endblock %}
+{% endblock%}   
