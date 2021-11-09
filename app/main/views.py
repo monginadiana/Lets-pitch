@@ -70,7 +70,7 @@ def categories():
 
 
 @main.route('/pitches/new/', methods = ['GET','POST'])
-
+@login_required
 def new_pitch():
     form = AddPitch()
     my_upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
