@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 from flask_login import login_required,current_user
 from ..models import User,Pitch,Comment,Upvote,Downvote
-from .forms import UpdateProfile,AddPitch,CommentForm,Downvote,Upvote
+from .forms import UpdateProfile,pitchForm,CommentForm,Downvote,Upvote
 from .. import db,photos
 from flask.views import View
 
@@ -55,22 +55,22 @@ def update_pic(uname):
 @main.route('/pitches', methods = ['GET','POST'])
 @login_required
 def new_pitch():
-    form = AddPitch()
-    if form.validate_on_submit():
+    pitch_form = pitchForm()
+    if  pitch_form.validate_on_submit():
         
-        title = form.title.data
-        category = form.category.data
-        description = form.description.data
+        title =  pitch_form.title.data
+        category =  pitch_form.category.data
+        description =  pitch_form.description.data
         
         new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_pitch)
         db.session.commit()
         return redirect(url_for('main.index'))
 
-    else:
-        all_pitches = Pitch.query.order_by(Pitch.date_posted).all()
+    # else:
+    #     all_pitches = Pitch.query.order_by(Pitch.date_posted).all()
 
-    return render_template('Pitch.html', new_pitch=all_pitches,pitch_form = form)
+    return render_template('Pitch.html', pitch_form =  pitch_form)
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
 

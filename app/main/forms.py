@@ -6,7 +6,7 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
 
-class AddPitch(FlaskForm):
+class pitchForm(FlaskForm):
     pitcher = StringField("Submitted By: Your Name ...", validators = [Required()])
     title = StringField("Pitch Title", validators = [Required()])
     category = SelectField("What category are you submitting to?", choices=[("twitter", "Twitter"), ( "elevator", "Elevator"), ("competition", "Competition"), ("investor", "Investor")],validators=[Required()])
