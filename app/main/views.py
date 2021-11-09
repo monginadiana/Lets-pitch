@@ -14,7 +14,7 @@ def index():
     View root page function that returns the index page and its data
     '''
     
-    title = 'Pitch Deck'
+    title = 'LetsPitch'
     
     return render_template('index.html', title = title)
 
@@ -24,8 +24,8 @@ def profile(uname):
     if user is None:
         abort(404)
     return render_template("profile/profile.html", user = user)
-
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
+
 
 @login_required
 def update_profile(uname):
@@ -39,6 +39,19 @@ def update_profile(uname):
         db.session.commit()
         return redirect(url_for('.profile',uname=user.username))
     return render_template('profile/update.html',form =form)
+
+
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(uname):
+    user = User.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname=uname))
+
 @main.route('/categories')
 def categories():
 
@@ -75,8 +88,6 @@ def new_pitch():
         
         return redirect(url_for('main.categories'))
     return render_template('add_pitch.html',form=form)
-
-
 
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
