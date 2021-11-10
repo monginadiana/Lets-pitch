@@ -22,3 +22,13 @@ To make advancements/modifications, follow these steps:
 - Commit your changes (`git commit -am 'Improve feature'`)
 - Push to the branch (`git push origin improve-feature`)
 - Create a Pull Request 
+
+## Technologies Used
+Technologies used to develop this application:
+
+1. Python v3.8
+2. Flask 1.1.2
+3. Flask-Bootstrap
+4. HTML 
+
+
