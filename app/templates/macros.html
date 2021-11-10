@@ -2,8 +2,8 @@
 <div class="first">
   {% if piches %}
   {% for pitch in piches %}
-  <h3 class="title">{{pitch.title}}</h3>
-  <p>{{pitch.post}}</p>
+  <h3 class="title">title:{{pitch.title}}</h3>
+  <p>post:{{pitch.post}}</p>
   <p>Category: {{pitch.category}}</p>
   <p> Posted by: <span class="user">{{pitch.user.username}}</span> on: <small class="text-muted mr-2">{{ pitch.time.strftime('%Y-%m-%d') }}</small></p>
   <div class="row actions">
