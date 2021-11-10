@@ -22,7 +22,7 @@ class Config:
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:access@localhost/dell'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:access@localhost/json'
     pass
 
 
@@ -32,7 +32,7 @@ class ProdConfig(Config):
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:cups@localhost/dell'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:cups@localhost/json'
     DEBUG = True
 
 

@@ -1,20 +1,45 @@
-
-
 {% extends 'base.html'%}
 {% import 'macros.html' as macro %}
-
+<!-- Styles block -->
 {% block styles%}
-    {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 {% endblock %}
-
 {% block content %}
-
-<div class="container text-center">
-    <img src="{{url_for('static', filename='')}}" />
-   <div class="text-content"> 
-        <h1>My pitching philosophy is simple - keep the ball way from the bat. <br> - pitching.</h1>
-        <h5>Satchel Paige</h5>
-    </div> 
-</div>
-{% endblock%}   
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 ">
+            <div class="card">
+                <h2>Twitter Pitches</h2>
+                <div id="twitter">
+                    {{ macro.showPitch(Twitter)}}
+                </div>
+            </div>
+            <div class="card">
+                <h2>Business Pitches</h2>
+                <div id="business">
+                    {{ macro.showPitch(business) }}
+                </div>
+            </div>
+            <div class="card">
+                <h2>Competition Pitches</h2>
+                <div id="competition">
+                {{ macro.showPitch(competition) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h2>Investor Pitches</h2>
+                <div id="investor">
+                {{ macro.showPitch(investor) }}
+                </div>
+            </div>
+    
+        </div>
+    </div>
+</div>   
+{% endblock %}

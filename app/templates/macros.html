@@ -1,30 +1,26 @@
-{% macro displayPitches(pitch_list) %} 
 
-{% block content %}
-  <h3 class="text-center" style="font-weight: bolder;"> TWITTER PITCHES</h3>
-  <hr style="width: 50%;">
-        <div>
-            {{ macro.display(twitter) }}
-        </div>
 
-  <h3 class="text-center" style="font-weight: bolder;"> ElEVATOR PITCHES</h3>
-  <hr style="width: 50%;">
-        <div>
-            {{ macro.display(elevator) }}
-        </div>   
-        
-  <h3 class="text-center" style="font-weight: bolder;"> COMPETITION PITCHES</h3>
-  <hr style="width: 50%;">
-        <div>
-            {{ macro.display(competition) }}
-        </div>
-        
-   <h3 class="text-center" style="font-weight: bolder;"> INVESTOR PITCHES</h3>
-   <hr style="width: 50%;">
-        <div>
-            {{ macro.display(investor) }}
-        </div>     
-        
-{% endblock %}       
-
+{% macro showPitch(pitch) %}
+<div class="first">
+  {% if pitches %}
+  {% for Pitch in pitches %}
+  <h3 class="title">{{Pitch.title}}</h3>
+  <p>{{Pitch.post}}</p>
+  <p>Category: {{Pitch.category}}</p>
+  <p> Posted by: <span class="user">{{Pitch.user.username}}</span> on: <small class="text-muted mr-2">{{ Pitch.time.strftime('%Y-%m-%d') }}</small></p>
+  <div class="row actions">
+    <div class="col-md-4 comment">
+      <span>{{Pitch.comment.count()}} <i class="fas fa-comment"></i> <a href="{{url_for('main.comment',Pitch_id = Pitch.id)}}">Add Comment</a></span>
+    </div>
+    <div class="col-md-4 upvote">
+      <span class="foot"> <a href="{{url_for('main.like',id = pitch.id)}}"><i class="fa fa-thumbs-up"></i> Upvotes: {{Pitch.upvote.count()}}</a></span>
+    </div>
+    <div class="col-md-4 downvote">
+      <span class="foot"> <a href="{{url_for('main.dislike',id = pitch.id)}}"> <i class="fa fa-thumbs-down"></i> Downvotes: {{Pitch.downvote.count()}}</a></span>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
 {% endmacro %}
+

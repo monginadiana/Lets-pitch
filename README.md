@@ -45,7 +45,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
-Copyright (c) 2020 [Diana Mongina ](https://github.com/monginadiana/NEWS.API)
+Copyright (c) 2020 [Diana Mongina ](https://github.com/monginadiana/Lets-pitch)
 
 
 

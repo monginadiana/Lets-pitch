@@ -9,8 +9,8 @@ class UpdateProfile(FlaskForm):
 class pitchForm(FlaskForm):
     pitcher = StringField("Submitted By: Your Name ...", validators = [Required()])
     title = StringField("Pitch Title", validators = [Required()])
-    category = SelectField("What category are you submitting to?", choices=[("twitter", "Twitter"), ( "elevator", "Elevator"), ("competition", "Competition"), ("investor", "Investor")],validators=[Required()])
-    description = TextAreaField('What pitch do you want to share?',validators = [Required()] )
+    category = SelectField("What category are you submitting to?", choices=[("twitter", "Twitter"), ( "business", "Business"), ("competition", "Competition"), ("investor", "Investor")],validators=[Required()])
+    description= TextAreaField('What pitch do you want to share?',validators = [Required()] )
     submit = SubmitField('Submit')
     
 
