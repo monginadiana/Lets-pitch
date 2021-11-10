@@ -11,35 +11,40 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6 ">
-            <div class="card">
+        <div class="col-md-12 ">
+            <div class="panel panel-default ">
                 <h2>Twitter Pitches</h2>
+          
                 <div id="twitter">
-                    {{ macro.showPitch(Twitter)}}
+                    {{ macro.showPitch(twitter)}}
                 </div>
             </div>
-            <div class="card">
+            <div class="panel panel-default">
                 <h2>Business Pitches</h2>
+                
                 <div id="business">
                     {{ macro.showPitch(business) }}
                 </div>
             </div>
-            <div class="card">
+            <div class="panel panel-default">
                 <h2>Competition Pitches</h2>
+                
                 <div id="competition">
                 {{ macro.showPitch(competition) }}
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
+              <div class="panel panel-default">
                 <h2>Investor Pitches</h2>
                 <div id="investor">
                 {{ macro.showPitch(investor) }}
                 </div>
             </div>
-    
+            
         </div>
+       
+          
+    
+        
     </div>
 </div>   
 {% endblock %}
