@@ -11,10 +11,8 @@ def index():
     social = Pitch.query.filter_by(category = 'Social').all()
     business = Pitch.query.filter_by(category = 'Business').all()
     interview = Pitch.query.filter_by(category = 'Interview').all()
-    news = Pitch.query.filter_by(category = 'News').all()
-    religion = Pitch.query.filter_by(category = 'Religion').all()
-    sports = Pitch.query.filter_by(category = 'Sports').all()
-    return render_template('index.html', pitches = pitches, social = social,business = business,interview= interview,news = news,religion = religion,sports = sports)
+    
+    return render_template('index.html', pitches = pitches, social = social,business = business,interview= interview)
 
 @main.route('/create_new', methods = ['POST','GET'])
 @login_required
@@ -28,7 +26,7 @@ def new_pitch():
         new_pitch_object = Pitch(post=post,user_id=current_user._get_current_object().id,category=category,title=title)
         new_pitch_object.save_p()
         return redirect(url_for('main.index'))
-    return render_template('new_pitch.html', form = form)
+    return render_template('Pitch.html', form = form)
 
 @main.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
 @login_required

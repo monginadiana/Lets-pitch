@@ -1,50 +1,41 @@
-{% extends 'base.html'%}
-{% import 'macros.html' as macro %}
+{% extends 'base.html'%} {% import 'macros.html' as macro %}
 <!-- Styles block -->
-{% block styles%}
-{{ super() }}
+{% block styles%} {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-{% endblock %}
-{% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 ">
-            <div class="panel panel-default ">
-                <h2>Twitter Pitches</h2>
-          
-                <div id="twitter">
-                    {{ macro.showPitch(twitter)}}
+<link
+  href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  rel="stylesheet"
+  href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+  crossorigin="anonymous"
+/>
+{% endblock %} {% block content %}
+<div class="container pitch">
+    <div class="  row">
+        <div class="col">
+                <div class="panel-body">
+                  <h2>Social Pitches</h2>
+                  <div id="social">{{ macro.showPitch(social)}}</div>
                 </div>
-            </div>
-            <div class="panel panel-default">
+        <div>
+        <div class="col">
+              <div class="panel-body">
                 <h2>Business Pitches</h2>
-                
-                <div id="business">
-                    {{ macro.showPitch(business) }}
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <h2>Competition Pitches</h2>
-                
-                <div id="competition">
-                {{ macro.showPitch(competition) }}
-                </div>
-            </div>
-              <div class="panel panel-default">
-                <h2>Investor Pitches</h2>
-                <div id="investor">
-                {{ macro.showPitch(investor) }}
-                </div>
-            </div>
+                <div id="business">{{ macro.showPitch(business)}}</div>
+              </div>
+        </div>
+        <div class="col">
+            
+              <div class="panel-body">
+                <h2>Interview Pitches</h2>
+                <div id="interview">{{ macro.showPitch(interview)}}</div>
+              </div>
             
         </div>
-       
-          
-    
-        
     </div>
-</div>   
+</div>
 {% endblock %}
