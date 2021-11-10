@@ -60,6 +60,7 @@ def new_pitch():
         
         title =  pitch_form.title.data
         category =  pitch_form.category.data
+        owner_id = current_user
         description =  pitch_form.description.data
         
         new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category)
