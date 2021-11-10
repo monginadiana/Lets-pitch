@@ -6,3 +6,10 @@
 nav a{
     color: blanchedalmond;
 }
+
+h2{
+    color: rgb(189, 9, 9);
+}
+#submit{
+    background-color: rgb(189, 9, 9) ;
+}

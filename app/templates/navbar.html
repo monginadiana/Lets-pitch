@@ -29,7 +29,7 @@
             aria-expanded="false">
             <i class="fas fa-user"></i>&nbsp;<strong>{{current_user.username}}</strong> </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}"style="color:white;"><i
+            <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}"><i
                 class="far fa-user"></i>&nbsp; My Profile</a><br>
             <a class="dropdown-item" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log
               out</a>
