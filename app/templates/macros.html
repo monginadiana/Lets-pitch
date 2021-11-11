@@ -1,7 +1,7 @@
-{% macro showPitch(piches) %}
+{% macro showPitch(pitches) %}
 <div class="first">
-  {% if piches %}
-  {% for pitch in piches %}
+  {% if pitches %}
+  {% for pitch in pitches %}
   <h3 class="title">title:{{pitch.title}}</h3>
   <p>post:{{pitch.post}}</p>
   <p>Category: {{pitch.category}}</p>
